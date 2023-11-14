@@ -19,7 +19,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ steps.tolowercase.outputs.username }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Build image and push to GHCR
@@ -27,4 +27,4 @@ jobs:
         with:
           context: ./sample-packages/docker
           push: true
-          tags: ${{ github.actor }}/practicepublish:latest
+          tags: ${{ steps.tolowercase.outputs.username }}/practicepublish:latest
